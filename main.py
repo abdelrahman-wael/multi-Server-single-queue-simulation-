@@ -3,7 +3,6 @@ from processes import *
 from policies import *
 from customer import *
 from queue import *
-from 
 
 def runSim(env,availableServers,queue,priority = False):
   env.process(generateCustomer(env,queue))
@@ -24,3 +23,7 @@ def runSim(env,availableServers,queue,priority = False):
 
 if name =="__main__":
   main()
+  
+  
+def main():
+ 
