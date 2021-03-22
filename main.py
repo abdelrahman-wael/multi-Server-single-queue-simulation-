@@ -1,8 +1,10 @@
 import simpy 
-from processes import *
 from policies import *
-from customer import *
-from queue import *
+from Customer import *
+from Queue import *
+from System import *
+from systemStats import *
+from tqdm import tqdm
 
 def runSim(env,availableServers,queue,priority = False):
   env.process(generateCustomer(env,queue))
@@ -20,10 +22,34 @@ def runSim(env,availableServers,queue,priority = False):
       # ServeCustomer(customer,queue,availableServers )
     yield env.timeout(0.1)
     
-
-if name =="__main__":
-  main()
-  
   
 def main():
+  dic = {"numOfSatisfied" : [],
+  "totalTimeInSys" : [],
+  "numOfCustomer" : [],
+  "maxTimeInSys" : [],
+  "avgQueueLen": [],
+  "maxQueueLen" :[],
+  "meanBusyTime" :[],
+  "maxBusyServer" : []}
+
+  # number of repetition the more the better
+  n=100
+
+  for i in tqdm(range(n)):
+
+    env = simpy.Environment()
+    system = System(env,FIFO)
+    env.process(system.Simulation())
+    env.run(until=480)
+    
+    saveSystemStat(dic,system)
+
+
+  showSystemStats(dic)
+
+
+
  
+if __name__=="__main__":
+  main()
