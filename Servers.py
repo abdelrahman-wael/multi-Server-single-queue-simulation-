@@ -6,14 +6,14 @@ class Server():
     self.numCustomer=0
 
 class Servers():
-  def __init__(self,numOfServers=5):
-    self.availableServers = [Server() for i in range(numOfServers)]
-    self.numOfServers = numOfServers
+  def __init__(self,numServers=5):
+    self.availableServers = [Server() for i in range(numServers)]
+    self.numServers = numServers
   # server customer using one of the servers available
   def ServeCustomer(self,env,customer,queue): 
     server=self.availableServers.pop(0)
-    if((self.numOfServers-len(self.availableServers))>queue.maxNumBusyServer):
-      queue.maxNumBusyServer = self.numOfServers-len(self.availableServers)
+    if((self.numServers-len(self.availableServers))>queue.maxNumBusyServer):
+      queue.maxNumBusyServer = self.numServers-len(self.availableServers)
     serviceTime= customer.calculateServiceTime()
     customer.serviceTime.append(serviceTime)
     server.TotalServiceTime+=serviceTime

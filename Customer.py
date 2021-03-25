@@ -1,3 +1,5 @@
+import numpy as np
+
 class Customer():
   def __init__(self):
     self.num_of_services=0
