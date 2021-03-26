@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np, scipy.stats as st
 import matplotlib.pyplot as plt
-from IPython.display import display 
 
 def serverStats(availableServers,totalTime=4800 , numServers = 5):
   totalServiceTime =0
@@ -9,6 +8,9 @@ def serverStats(availableServers,totalTime=4800 , numServers = 5):
   for server in availableServers:
     avgBusyTime += server.TotalServiceTime/totalTime
   return avgBusyTime/numServers
+
+
+
 
 
 def  customerStat(queue):
@@ -28,13 +30,13 @@ def  customerStat(queue):
 def saveSystemStat(dic,system):
 
   arrivalTime,timeSpent,satisfiedCustomer = customerStat(system.queue)
-  dic["numOfCustomer"].append(len(timeSpent))
+  dic["numCustomer"].append(len(timeSpent))
 
   dic["totalTimeInSys"].append(sum(timeSpent)/len(timeSpent) )
   dic["maxTimeInSys"].append(max(timeSpent))
 
   # total num of satisfied customer 
-  dic["numOfSatisfied"].append(satisfiedCustomer)
+  dic["numSatisfied"].append(satisfiedCustomer)
   # queue stats 
   dic["avgQueueLen"].append(sum(system.queue.numCustomer)/len(system.queue.numCustomer))
   dic["maxQueueLen"].append(system.queue.maxLen)
@@ -58,9 +60,9 @@ def showSystemStats(dic):
     dataframe["stander deviation"].append(std)
     dataframe["confidence interval 95%"].append(confidenceInterval)
   dataframe=pd.DataFrame(dataframe)
-  dataframe=dataframe.set_index("variables")
+  dataframe.set_index("variables")
   pd.set_option('display.max_columns', None)
-  display(dataframe)
+  print(dataframe)
 
 
 

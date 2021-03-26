@@ -1,13 +1,13 @@
 from Queue import *
 from Servers import *
-
+from policies import *
 # this class wraps the main component of the system
 class System(object):
-  def __init__(self,env,policy,numServers,arrivalTime):
+  def __init__(self,env,numServers,arrivalTime,policy):
     self.env = env
     self.queue = Queue(arrivalTime)
     self.servers = Servers(numServers)
-    self.policy = policy
+    self.policy = getPolicy(policy)
 
   def Simulation(self):
     self.env.process(self.queue.generateCustomer(self.env))
