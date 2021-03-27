@@ -27,7 +27,10 @@ simply by coloning the repo and runing main.py using the below command. \
 * arrivalTime is the exponential interarrival mean of customers. 
 * iterations is the number of iteration the simulation will run and the reported the results is on the mean of all iterations to achieve more accurate results. 
 # Simulation Results 
-tables will be added to back up the observations below.
+
+<p align="center">
+  <img src="./images/Results.png"  >
+</p>
 
 
 
